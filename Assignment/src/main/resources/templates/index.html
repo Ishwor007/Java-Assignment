@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragment/head.html :: headerfiles">
+</head>
+
+<body>
+	<header class='container header__container'
+		th:replace="fragment/header.html :: header"></header>
+		
+	<div class='full__width' th:insert="fragment/nav.html :: navbar"></div>
+
+	<!-- Most Momentum -->
+	<section class='momentum__section'>
+		<div class="container mostfunded__container">
+			<h2>Highest Raising</h2>
+			<h5>Offerings that are raising high capital.</h5>
+			<div class="cards row">
+				<div class="card" th:each="company : ${companybasedoncapital}" th:if="${company.status eq 'raising'}">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Most Funded -->
+	<section class='mostfunded__section'>
+		<div class="container mostfunded__container">
+			<h2>Recently Launched</h2>
+			<h5>Companies that are listed recently.</h5>
+			<div class="cards row">
+				<div class="card" th:each="company : ${companybasedondate}" th:if="${company.status eq 'raising'}">
+					<div th:replace="fragment/company-card.html :: card"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	
+	<section th:insert="fragment/investment-guidelines.html :: guidelines"></section>
+	<footer th:insert="fragment/footer.html :: footer"></footer>
+</body>
+
+</html>

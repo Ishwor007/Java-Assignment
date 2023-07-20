@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/LoginSignup.css}">
+
+
+<body>
+
+
+	<section class="login">
+		<div class="container login__container">
+			<div class="login__left">
+				<img th:src="@{'/images/register.png'}" alt="image" />
+			</div>
+			<div class="login__right">
+				<div th:if="${param.error}" class="alert alert-error text-danger">
+					Invalid username or password.</div>
+				<div class="heading__background">
+					<a th:href="@{/login}" class='active'>
+						<h2>Login</h2>
+					</a> <a th:href="@{/signup}">
+						<h2>Sign Up</h2>
+					</a>
+				</div>
+				<form th:action="@{/processlogin}" method="post">
+					<input class='input__box' type="email" placeholder='Email' name="email" required /> <input
+						class='input__box' type="password" placeholder='Password' name="password" required /> <input
+						class='btn btn-primary btn__login' type="submit" value='Log In' required />
+				</form>
+				
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>

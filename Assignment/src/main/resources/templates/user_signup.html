@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/LoginSignup.css}">
+
+</head>
+
+<body>
+    <hr>
+    <section>
+        <div class="container login__container">
+            <div class="login__right">
+                <!--<span id="error-msg"></span> --> 
+                <div class="heading__background">
+                    <a th:href="@{/login}">
+                        <h2>Login</h2>
+                    </a>
+                    <a href="#" class='active'>
+                        <h2>Sign Up</h2>
+                    </a>
+                </div>
+                <p id="error-msg"></p>
+                <form th:action="@{/userregister}" method="post" id="signup-form">
+                    <input class='input__box' type="text`" placeholder='First Name' name="firstname" id="fname" />
+                    <input class='input__box' type="text" placeholder='Last Name' name="lastname" id="lname" />
+                    <input class='input__box' type="email" placeholder='Email' name="email" />
+                    <input class='input__box' type="text" placeholder='Mobile Number' name="phone" id="mobile" />
+
+                    <input class='input__box' type="text`" placeholder='Address' name="address" id="address" />
+                    <!-- <span id="password-error"> ** password</span> -->
+                    <input class='input__box' type="password" placeholder='Password' id="password" name="password" />
+                    <input class='input__box' type="password" placeholder='Confirm Password' id="cpassword" name="c_password" />
+                    <input class='btn btn-primary btn__login' type="submit" value='Sign Up'  />
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', e => {
+            e.preventDefault();
+            if(registerValidate()==true){
+                document.getElementById('signup-form').submit();
+            }
+        });
+
+        registerValidate = ()=>{
+            let fname = document.getElementById('fname').value;
+            let lname = document.getElementById('lname').value;
+            let mobile = document.getElementById('mobile').value;
+            let address = document.getElementById('address').value;
+            let password = document.getElementById('password').value;
+            let cpassword = document.getElementById('cpassword').value;
+
+            let fnamecheck = /^[a-zA-Z]{3,}$/;
+            let lnamecheck = /^[a-zA-Z]{3,}$/;
+            let mobilecheck = /^9[678]\d{8}$/;
+            let addresscheck = /^[a-zA-Z0-9\s,-]{3,}$/;
+            let passwordcheck = /^(?=.*[0-9])(?=.*[!@#$%^*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+
+            if(fnamecheck.test(fname)){
+                document.getElementById('error-msg').innerHTML = "";
+            }else{
+
+                document.getElementById('error-msg').innerHTML = "** Enter valid first name";
+                return false;
+            }
+
+            if(lnamecheck.test(lname)){
+                document.getElementById('error-msg').innerHTML = "";
+            }else{
+                document.getElementById('error-msg').innerHTML = "** Enter valid lastname";
+                return false;
+            }
+
+            if(mobilecheck.test(mobile)){
+                document.getElementById('error-msg').innerHTML = "";
+            }else{
+                document.getElementById('error-msg').innerHTML = "** Enter valid mobile number";
+                return false;
+            }
+
+            if(addresscheck.test(address)){
+                document.getElementById('error-msg').innerHTML = "";
+            }else{
+                document.getElementById('error-msg').innerHTML = "** Enter valid address";
+                return false;
+            }
+
+            if(passwordcheck.test(password)){
+                document.getElementById('error-msg').innerHTML = "";
+            }else{
+                document.getElementById('error-msg').innerHTML = "** Enter valid password";
+                return false;
+            }
+            if(password.length < 8){
+                document.getElementById('error-msg').innerHTML = "** Password must be atleast 8 characters";
+                return false;
+            }
+
+            if(password !== cpassword){
+                document.getElementById('error-msg').innerHTML = "** Password Not matched";
+                return false;
+            }
+            console.log("success");
+            return true;
+        };
+    </script>
+
+    
+</body>
+
+</html>

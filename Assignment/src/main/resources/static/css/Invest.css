@@ -1,0 +1,8 @@
+.invest__nav{
+    
+}
+.invest__nav ul{
+    display: flex;
+    background: var(--color-bg);
+    gap: 1rem;
+}
