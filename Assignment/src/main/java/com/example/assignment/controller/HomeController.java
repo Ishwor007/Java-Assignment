@@ -14,7 +14,6 @@ public class HomeController {
 		
 		return "index";
 	}
-	
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		request.getSession(false).invalidate();
