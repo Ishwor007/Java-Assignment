@@ -22,7 +22,7 @@ public class RegisterController {
 
 @Autowired
 UserService userservice;
-	
+
 	@GetMapping("/signup")
 	public String getSignupPage() {
 	
@@ -50,8 +50,6 @@ UserService userservice;
 		}
 	
 	}
-	
-	
 	
 	//to get logged in user
 	public User getCurrentUser() {
