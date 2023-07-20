@@ -19,7 +19,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class Security extends WebSecurityConfigurerAdapter {
 	@Autowired
 	CustomUserDetailService customuserdetailservice;
-
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
             http
